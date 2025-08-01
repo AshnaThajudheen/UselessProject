@@ -1,6 +1,6 @@
-🧠 **STRESS BUSTER** 💥
+ 🎯**STRESS BUSTER** 
 
-🧠 Basic Details
+  Basic Details
 
 **Team Name:** ctrl+she
 **Team Members:**
