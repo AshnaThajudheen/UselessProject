@@ -87,10 +87,10 @@ Then open `http://localhost:8000` in your browser.
 
 ### Screenshots
 
-![Homepage](screenshot/dashboard(1).png)
+![Homepage](screenshot/home.png)
 *Landing page with smooth scroll and floating chaos ducks.*
 
-![Dashboard](screenshot/dashboard(2).png)
+![Dashboard](screenshot/dashboard.png)
 
 ![Bubble Wrap](screenshot/bubble.png)
 *Bubble wrap popping simulator with ridiculous sounds like frogs and minions.*
