@@ -1,32 +1,24 @@
-body {
-  font-family: 'Comic Sans MS', cursive;
-  background: linear-gradient(to right, #dff9fb, #f5f6fa);
-  text-align: center;
-  overflow: hidden;
+.wrap-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: 12px;
+  max-width: 90vw;
+  margin: auto;
+  padding: 10px;
 }
 
-h1 {
-  margin-top: 20px;
-  color: #444;
-}
-
-.bubble-container {
-  position: relative;
+.wrap-bubble {
   width: 100%;
-  height: 90vh;
-}
-
-.bubble {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: #a29bfe;
+  aspect-ratio: 1;
   border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 30%, #90caf9);
+  border: 2px solid #64b5f6;
   cursor: pointer;
-  transition: transform 0.1s ease;
-  box-shadow: 0 0 10px #888;
+  box-shadow: inset -2px -2px 5px #fff, inset 2px 2px 5px #64b5f6;
+  transition: transform 0.1s ease, opacity 0.3s ease;
 }
 
-.bubble:hover {
-  transform: scale(1.2);
+.wrap-bubble:active {
+  transform: scale(0.8);
+  opacity: 0.5;
 }

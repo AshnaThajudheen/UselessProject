@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎶 MockTune - Song Roaster</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background-color: #fff5f8;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+
+    label, select {
+      font-size: 1.2em;
+      margin: 10px;
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #ff69b4;
+      background-color: #fff0f5;
+    }
+
+    #generate-song {
+      padding: 12px 24px;
+      font-size: 1.2em;
+      font-weight: bold;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      margin-top: 15px;
+    }
+
+    #generate-song:hover {
+      background-color: #ff1493;
+      transform: translateY(-2px);
+    }
+
+    pre {
+      background: #ffe6f0;
+      border-left: 4px solid #ff69b4;
+      padding: 20px;
+      width: 90%;
+      max-width: 800px;
+      font-size: 1.1em;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎶 MockTune - Song Roaster</h1>
+  <label for="mood">How are you feeling today?</label>
+  <select id="mood">
+    <option value="">-- Select Mood --</option>
+    <option value="happy">😄 Happy</option>
+    <option value="sad">😢 Sad</option>
+    <option value="tired">😴 Tired</option>
+    <option value="overworked">💼 Overworked</option>
+    <option value="chaotic">💥 Chaotic</option>
+  </select>
+  <button id="generate-song">Generate Roast Song</button>
+  <pre id="song-output">🦆 Waiting to compose your roast melody...</pre>
+
+  <script src="../script/song.js"></script>
+</body>
+</html>

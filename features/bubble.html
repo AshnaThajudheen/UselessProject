@@ -2,12 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>FrogWrap - Pop Sounds</title>
+  <title>FrogWrap - Pop Grid</title>
   <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    body {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(to right, #e0f7fa, #fce4ec);
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #4a148c;
+      margin-bottom: 30px;
+    }
+
+    .wrap-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+      gap: 12px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .wrap-bubble {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 30%, #90caf9);
+      border: 2px solid #64b5f6;
+      cursor: pointer;
+      box-shadow: inset -2px -2px 5px #fff, inset 2px 2px 5px #64b5f6;
+      transition: transform 0.1s ease, opacity 0.3s ease;
+    }
+
+    .wrap-bubble:active {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+  </style>
 </head>
 <body>
-  <h1>🫧 FrogWrap: Click to Pop!</h1>
-  <div class="bubble-container" id="bubbleContainer"></div>
+  <h1>🫧 FrogWrap: Ultimate Popping Grid</h1>
+  <div class="wrap-container" id="wrapContainer"></div>
 
   <script src="../script/bubble.js"></script>
 </body>

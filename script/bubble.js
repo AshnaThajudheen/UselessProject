@@ -1,4 +1,5 @@
-const bubbleContainer = document.getElementById('bubbleContainer');
+const wrapContainer = document.getElementById('wrapContainer');
+
 const soundList = [
   'duck.mp3',
   'cricket.mp3',
@@ -8,26 +9,40 @@ const soundList = [
   'siren.mp3'
 ];
 
-function randomSound() {
-  const sound = new Audio(`../assets/sounds/${soundList[Math.floor(Math.random() * soundList.length)]}`);
-  sound.play();
-}
+let currentSound = null;
 
-function createBubble() {
-  const bubble = document.createElement('div');
-  bubble.classList.add('bubble');
-  bubble.style.left = Math.random() * 90 + "%";
-  bubble.style.top = Math.random() * 90 + "%";
-  bubble.addEventListener('click', () => {
-    randomSound();
-    bubble.remove();
-  });
-  bubbleContainer.appendChild(bubble);
+function playRandomPopSound() {
+  // Stop currently playing sound
+  if (currentSound) {
+    currentSound.pause();
+    currentSound.currentTime = 0;
+  }
+
+  const randomFile = soundList[Math.floor(Math.random() * soundList.length)];
+  currentSound = new Audio(`../assets/sounds/${randomFile}`);
+  currentSound.play();
 
   setTimeout(() => {
-    bubble.remove();
-  }, 8000); // auto-remove after 8 seconds
+    if (currentSound) {
+      currentSound.pause();
+      currentSound.currentTime = 0;
+    }
+  }, 5000);
 }
 
-// Create bubbles every 300ms
-setInterval(createBubble, 300);
+function createBubbleGrid(rows = 10, cols = 10) {
+  wrapContainer.innerHTML = "";
+  for (let i = 0; i < rows * cols; i++) {
+    const bubble = document.createElement('div');
+    bubble.classList.add('wrap-bubble');
+    bubble.addEventListener('click', () => {
+      playRandomPopSound();
+      bubble.style.transform = 'scale(0.6)';
+      bubble.style.opacity = '0.3';
+      bubble.style.pointerEvents = 'none';
+    });
+    wrapContainer.appendChild(bubble);
+  }
+}
+
+createBubbleGrid(10, 10);
