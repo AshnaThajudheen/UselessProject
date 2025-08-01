@@ -1,4 +1,4 @@
-🧠 STRESS BUSTER 💥
+🧠 **STRESS BUSTER** 💥
 
 🧠 Basic Details
 
