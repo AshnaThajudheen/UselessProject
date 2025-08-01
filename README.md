@@ -88,7 +88,7 @@ Then open `http://localhost:8000` in your browser.
 ### Screenshots
 
 ![Homepage](screenshot/dashboard(1).png)
-![Homepage](screenshot/dashboard(2).png)
+![Dashboard](screenshot/dashboard(2).png)
 *Landing page with smooth scroll and floating chaos ducks.*
 
 ![Bubble Wrap](screenshot/bubble.png)
