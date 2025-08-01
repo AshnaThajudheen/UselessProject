@@ -91,6 +91,7 @@ Then open `http://localhost:8000` in your browser.
 *Landing page with smooth scroll and floating chaos ducks.*
 
 ![Dashboard](screenshot/dashboard.png)
+*A fun anti-productivity kit with popping, roasting, judging, and chaos.*
 
 ![Bubble Wrap](screenshot/bubble.png)
 *Bubble wrap popping simulator with ridiculous sounds like frogs and minions.*
