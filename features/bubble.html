@@ -2,28 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FrogWrap - Pop Grid</title>
   <link rel="stylesheet" href="../assets/style.css" />
   <style>
-    body {
-      text-align: center;
-      padding: 20px;
-      background: linear-gradient(to right, #e0f7fa, #fce4ec);
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
       font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to bottom, #e0f7fa, #fce4ec);
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
     }
 
     h1 {
+      text-align: center;
       font-size: 2.5em;
       color: #4a148c;
+      margin-top: 60px;
       margin-bottom: 30px;
+      z-index: 2;
     }
 
     .wrap-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+      grid-template-columns: repeat(10, 50px);
       gap: 12px;
-      max-width: 600px;
-      margin: auto;
+      justify-content: center;
+      margin-bottom: 30px;
+      z-index: 2;
     }
 
     .wrap-bubble {
@@ -41,12 +59,98 @@
       transform: scale(0.8);
       opacity: 0.5;
     }
+
+    .back-btn {
+      padding: 12px 25px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #fff;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 40px;
+      z-index: 2;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Floating background assets */
+    .floating-asset {
+      position: absolute;
+      z-index: 0;
+      opacity: 0.6;
+      animation: float 10s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* Ducks */
+    .duck1 { top: 5%; left: 5%; width: 100px; animation-duration: 14s; }
+    .duck2 { top: 30%; right: 10%; width: 90px; animation-duration: 12s; }
+    .duck3 { bottom: 25%; left: 20%; width: 80px; animation-duration: 16s; }
+    .duck4 { bottom: 5%; right: 5%; width: 90px; animation-duration: 14s; }
+
+    /* Bees */
+    .bee1 { top: 10%; left: 25%; width: 70px; animation-duration: 10s; }
+    .bee2 { top: 45%; right: 25%; width: 80px; animation-duration: 11s; }
+    .bee3 { bottom: 35%; left: 30%; width: 75px; animation-duration: 12s; }
+    .bee4 { bottom: 10%; right: 30%; width: 70px; animation-duration: 14s; }
+
+    /* Bubbles */
+    .bubble1 { top: 20%; left: 50%; width: 100px; animation-duration: 13s; }
+    .bubble2 { bottom: 40%; right: 50%; width: 110px; animation-duration: 15s; }
+    .bubble3 { top: 70%; left: 10%; width: 90px; animation-duration: 17s; }
+    .bubble4 { bottom: 5%; right: 10%; width: 95px; animation-duration: 12s; }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px) rotate(3deg); }
+      100% { transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .wrap-container {
+        grid-template-columns: repeat(5, 50px);
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Floating background assets -->
+  <img src="../assets/duck1.png" alt="Duck" class="floating-asset duck1" />
+  <img src="../assets/duck1.png" alt="Duck" class="floating-asset duck2" />
+  <img src="../assets/duck1.png" alt="Duck" class="floating-asset duck3" />
+  <img src="../assets/duck1.png" alt="Duck" class="floating-asset duck4" />
+
+  <img src="../assets/bee1.png" alt="Bee" class="floating-asset bee1" />
+  <img src="../assets/bee1.png" alt="Bee" class="floating-asset bee2" />
+  <img src="../assets/bee1.png" alt="Bee" class="floating-asset bee3" />
+  <img src="../assets/bee1.png" alt="Bee" class="floating-asset bee4" />
+
+  <img src="../assets/bubble.png" alt="Bubble" class="floating-asset bubble1" />
+  <img src="../assets/bubble.png" alt="Bubble" class="floating-asset bubble2" />
+  <img src="../assets/bubble.png" alt="Bubble" class="floating-asset bubble3" />
+  <img src="../assets/bubble.png" alt="Bubble" class="floating-asset bubble4" />
+
+  <!-- Main Content -->
   <h1>🫧 FrogWrap: Ultimate Popping Grid</h1>
   <div class="wrap-container" id="wrapContainer"></div>
 
+  <button class="back-btn" onclick="window.location.href='../index.html'">
+    Back to Dashboard
+  </button>
+
+  <!-- Bubble logic -->
   <script src="../script/bubble.js"></script>
 </body>
 </html>

@@ -2,45 +2,181 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Judgy Typer</title>
-  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet"/>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to bottom right, #e0f7fa, #fce4ec);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
     body {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 100px;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 750px;
       padding: 40px;
+      background: #ffffffdd;
+      backdrop-filter: blur(12px);
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Chewy', cursive;
+      font-size: 2.8em;
+      color: #3f51b5;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #7b1fa2;
+      font-size: 1.2em;
+      margin-bottom: 25px;
     }
 
     textarea {
-      width: 80%;
-      height: 200px;
-      font-size: 18px;
+      width: 100%;
+      height: 180px;
       padding: 15px;
-      border-radius: 10px;
-      border: 2px solid #999;
+      font-size: 1em;
+      border: 2px solid #b2ebf2;
+      border-radius: 15px;
+      background: #fefefe;
       resize: none;
+      transition: all 0.3s ease;
       outline: none;
+    }
+
+    textarea:focus {
+      border-color: #ffb6c1;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
     }
 
     .roast {
       margin-top: 20px;
-      font-size: 20px;
-      color: crimson;
-      font-weight: bold;
+      font-family: 'Chewy', cursive;
+      color: #ff4081;
+      font-size: 1.7em;
     }
 
     .score {
-      font-size: 40px;
+      margin-top: 15px;
+      font-family: 'Chewy', cursive;
+      color: #673ab7;
+      font-size: 2em;
+    }
+
+    .back-btn {
       margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Floating assets */
+    .floating-asset {
+      position: absolute;
+      z-index: 1;
+      animation: float 8s ease-in-out infinite;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .duck1 { top: 10%; left: 5%; animation-duration: 12s; width: 100px; }
+    .duck2 { bottom: 15%; right: 10%; animation-duration: 10s; width: 140px; }
+    .duck3 { top: 25%; right: 5%; animation-duration: 14s; width: 130px; }
+    .bubble1 { top: 60%; left: 15%; animation-duration: 13s; width: 150px; }
+    .bubble2 { top: 35%; left: 10%; animation-duration: 11s; width: 120px; }
+    .bubble3 { bottom: 10%; right: 20%; animation-duration: 15s; width: 160px; }
+    .bubble4 { top: 8%; left: 40%; animation-duration: 16s; width: 140px; }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px) rotate(3deg); }
+      100% { transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 25px;
+        margin: 15px;
+      }
+
+      h1 {
+        font-size: 2.2em;
+      }
+
+      textarea {
+        height: 150px;
+      }
+
+      .roast {
+        font-size: 1.3em;
+      }
+
+      .score {
+        font-size: 1.6em;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>⌨️ Judgy Typer</h1>
-  <p>Type below and get insulted instantly.</p>
-  <textarea id="typingArea" placeholder="Start typing here..."></textarea>
-  <div class="roast" id="roastText"></div>
-  <div class="score" id="scoreText"></div>
 
+  <!-- Floating Assets -->
+  <img src="../assets/duck1.png" alt="Duck" class="floating-asset duck1" />
+  <img src="../assets/duck1.png" alt="Duck" class="floating-asset duck2" />
+  <img src="../assets/duck1.png" alt="Duck" class="floating-asset duck3" />
+  <img src="../assets/bubble.png" alt="Bubble" class="floating-asset bubble1" />
+  <img src="../assets/bubble.png" alt="Bubble" class="floating-asset bubble2" />
+  <img src="../assets/bubble.png" alt="Bubble" class="floating-asset bubble3" />
+  <img src="../assets/bubble.png" alt="Bubble" class="floating-asset bubble4" />
+
+  <!-- Judgy Typer Game -->
+  <div class="container">
+    <h1>⌨ Judgy Typer</h1>
+    <p>Type your heart out, get roasted instantly.</p>
+    <textarea id="typingArea" placeholder="Type like you're being judged..."></textarea>
+    <div class="roast" id="roastText"></div>
+    <div class="score" id="scoreText"></div>
+    <button class="back-btn" onclick="window.location.href='../index.html'">Back to Dashboard</button>
+  </div>
+
+  <!-- Script -->
   <script src="../script/typing.js"></script>
 </body>
 </html>

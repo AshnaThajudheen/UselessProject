@@ -12,7 +12,6 @@ const soundList = [
 let currentSound = null;
 
 function playRandomPopSound() {
-  // Stop currently playing sound
   if (currentSound) {
     currentSound.pause();
     currentSound.currentTime = 0;
