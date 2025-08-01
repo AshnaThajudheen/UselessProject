@@ -109,7 +109,7 @@ Then open `http://localhost:8000` in your browser.
 
 ### Diagrams
 
-![Workflow](screenshot/workflow.png)
+![Workflow](screenshot/workflow.jpg)
 *Workflow: Fake input → Sarcastic response → Useless outcome → Quack → Laugh*
 
 ---
