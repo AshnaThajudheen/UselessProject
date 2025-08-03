@@ -11,16 +11,30 @@ const soundList = [
 
 let currentSound = null;
 
+// Preload sound files
+const preloadedSounds = soundList.map(filename => {
+  const audio = new Audio(`../assets/sounds/${filename}`);
+  audio.preload = 'auto';
+  return audio;
+});
+
 function playRandomPopSound() {
+  // Stop and reset the current sound if playing
   if (currentSound) {
     currentSound.pause();
     currentSound.currentTime = 0;
   }
 
-  const randomFile = soundList[Math.floor(Math.random() * soundList.length)];
-  currentSound = new Audio(`../assets/sounds/${randomFile}`);
+  // Pick a random preloaded sound
+  const randomSound = preloadedSounds[Math.floor(Math.random() * preloadedSounds.length)];
+  currentSound = randomSound;
+
+  // Reset and play the selected sound
+  currentSound.pause();
+  currentSound.currentTime = 0;
   currentSound.play();
 
+  // Auto-stop sound after 5 seconds
   setTimeout(() => {
     if (currentSound) {
       currentSound.pause();
@@ -29,19 +43,32 @@ function playRandomPopSound() {
   }, 5000);
 }
 
+// Create bubble grid
 function createBubbleGrid(rows = 10, cols = 10) {
   wrapContainer.innerHTML = "";
+
   for (let i = 0; i < rows * cols; i++) {
     const bubble = document.createElement('div');
     bubble.classList.add('wrap-bubble');
+
     bubble.addEventListener('click', () => {
       playRandomPopSound();
       bubble.style.transform = 'scale(0.6)';
       bubble.style.opacity = '0.3';
-      bubble.style.pointerEvents = 'none';
+      bubble.style.pointerEvents = 'none'; // disable after pop
     });
+
     wrapContainer.appendChild(bubble);
   }
 }
 
+// Call on load
 createBubbleGrid(10, 10);
+
+// Clean up sound on page unload
+window.addEventListener('beforeunload', () => {
+  if (currentSound) {
+    currentSound.pause();
+    currentSound.currentTime = 0;
+  }
+});
