@@ -9,28 +9,13 @@ const soundList = [
   'siren.mp3'
 ];
 
-let currentSound = null;
-
-// Preload sound files
-const preloadedSounds = soundList.map(filename => {
-  const audio = new Audio(`../assets/sounds/${filename}`);
-  audio.preload = 'auto';
-  return audio;
-});
+// Preload file paths for faster access (optional, not using <audio> instances to allow overlap)
+const soundPaths = soundList.map(file => `../assets/sounds/${file}`);
 
 function playRandomPopSound() {
-  // Stop and reset the current sound if still playing
-  if (currentSound && !currentSound.ended) {
-    currentSound.pause();
-    currentSound.currentTime = 0;
-  }
-
-  // Pick a random preloaded sound
-  const randomSound = preloadedSounds[Math.floor(Math.random() * preloadedSounds.length)];
-  currentSound = randomSound;
-
-  currentSound.currentTime = 0;
-  currentSound.play();
+  const randomFile = soundPaths[Math.floor(Math.random() * soundPaths.length)];
+  const sound = new Audio(randomFile);
+  sound.play(); // Allow to play independently
 }
 
 // Create bubble grid
@@ -54,11 +39,3 @@ function createBubbleGrid(rows = 10, cols = 10) {
 
 // Call on load
 createBubbleGrid(10, 10);
-
-// Clean up sound on page unload
-window.addEventListener('beforeunload', () => {
-  if (currentSound) {
-    currentSound.pause();
-    currentSound.currentTime = 0;
-  }
-});
