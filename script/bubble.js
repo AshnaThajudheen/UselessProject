@@ -19,8 +19,8 @@ const preloadedSounds = soundList.map(filename => {
 });
 
 function playRandomPopSound() {
-  // Stop and reset the current sound if playing
-  if (currentSound) {
+  // Stop and reset the current sound if still playing
+  if (currentSound && !currentSound.ended) {
     currentSound.pause();
     currentSound.currentTime = 0;
   }
@@ -29,18 +29,8 @@ function playRandomPopSound() {
   const randomSound = preloadedSounds[Math.floor(Math.random() * preloadedSounds.length)];
   currentSound = randomSound;
 
-  // Reset and play the selected sound
-  currentSound.pause();
   currentSound.currentTime = 0;
   currentSound.play();
-
-  // Auto-stop sound after 5 seconds
-  setTimeout(() => {
-    if (currentSound) {
-      currentSound.pause();
-      currentSound.currentTime = 0;
-    }
-  }, 5000);
 }
 
 // Create bubble grid
